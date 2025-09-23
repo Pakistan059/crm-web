@@ -1,0 +1,70 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-50">
+  <mat-card class="w-full max-w-md p-6" appearance="outlined">
+
+    <!-- CRM Logo -->
+    <div class="flex justify-center mb-4">
+      <img ngSrc="assets/crm-logo.svg" width="48" height="48" alt="CRM Logo" />
+    </div>
+
+    <mat-card-header class="justify-center">
+      <mat-card-title class="text-center text-xl font-semibold relative bottom-4">Register</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4" novalidate>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" />
+          @if (form.controls['name'].touched && form.controls['name'].hasError('required')) {
+            <mat-error class="relative right-4">Name is required</mat-error>
+          }
+          @if (form.controls['name'].touched && form.controls['name'].hasError('minlength')) {
+            <mat-error class="relative right-4">Minimum 2 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+          @if (form.controls['email'].touched && form.controls['email'].hasError('required')) {
+            <mat-error class="relative right-4">Email is required</mat-error>
+          }
+          @if (form.controls['email'].touched && form.controls['email'].hasError('email')) {
+            <mat-error class="relative right-4">Enter a valid email address</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+          @if (form.controls['password'].touched && form.controls['password'].hasError('required')) {
+            <mat-error class="relative right-4">Password is required</mat-error>
+          }
+          @if (form.controls['password'].touched && form.controls['password'].hasError('minlength')) {
+            <mat-error class="relative right-4">Minimum 8 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Confirm password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" />
+          @if (form.controls['confirmPassword'].touched && form.hasError('passwordMismatch')) {
+            <mat-error class="relative right-4">Passwords do not match</mat-error>
+          }
+          @if (form.controls['confirmPassword'].touched && form.controls['confirmPassword'].hasError('required')) {
+            <mat-error class="relative right-4">Confirm password is required</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-raised-button matButton="filled" class="w-full" [disabled]="form.invalid || isSubmitting">
+          Register
+        </button>
+      </form>
+      <div class="mt-4 text-center text-sm">
+        Already have an account?
+        <a routerLink="/login" class="text-blue-600 hover:underline cursor-pointer">Login</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

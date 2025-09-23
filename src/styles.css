@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* Fix Angular Material outlined form-field notch/border with Tailwind v4 preflight */
+@layer base {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__trailing {
+    border-width: 1px;
+  }
+  .mdc-notched-outline__notch {
+    padding-left: 0; /* avoid extra notch spacing after Tailwind resets */
+    border-width: 1px;
+    /* Tailwind sets a global border-style; ensure the notch doesn't paint a right border inside the input */
+    border-right-width: 0;
+  }
+
+  /* Ensure all outline segments use Material's intended color even with Tailwind border-color defaults */
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--mdc-outlined-text-field-outline-color, var(--mat-sys-outline));
+    border-style: solid;
+  }
+
+  /* Higher-specificity overrides for MDC outlined text fields */
+  .mat-mdc-text-field-wrapper .mdc-notched-outline__notch {
+    border-right-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .mat-mdc-text-field-wrapper .mdc-notched-outline__leading {
+    border-right-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .mat-mdc-text-field-wrapper .mdc-notched-outline__trailing {
+    border-left-width: 0 !important;
+    box-sizing: border-box;
+  }
+}
