@@ -86,6 +86,22 @@ export class Vendors {
       address: { street: '123 Market St', city: 'San Jose' },
       isActive: false,
       accountManagers: ['Mike Ross']
+    },
+    {
+      id: 3,
+      vendorBusinessType: { key: 'retail', value: 'Retail' },
+      name: 'BestBuy',
+      address: { street: '123 Market St', city: 'San Jose' },
+      isActive: false,
+      accountManagers: ['Mike Ross']
+    },
+    {
+      id: 4,
+      vendorBusinessType: { key: 'retail', value: 'Retail' },
+      name: 'BestBuy',
+      address: { street: '123 Market St', city: 'San Jose' },
+      isActive: false,
+      accountManagers: ['Mike Ross']
     }
   ];
 
