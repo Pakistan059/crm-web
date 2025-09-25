@@ -13,6 +13,7 @@ import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {NgClass} from '@angular/common';
+import {MatPaginator} from '@angular/material/paginator';
 
 // vendor-overview.component.ts
 export interface KeyValue {
@@ -60,7 +61,8 @@ export interface VendorOverview {
     MatCardContent,
     MatRow,
     MatIconButton,
-    NgClass
+    NgClass,
+    MatPaginator
   ],
   templateUrl: './vendors.html',
   styleUrl: './vendors.css'
