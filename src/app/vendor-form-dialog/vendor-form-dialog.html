@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Create New Vendor</h2>
+
+<mat-dialog-content [formGroup]="vendorForm" class="flex flex-col gap-4 relative top-2">
+  <mat-form-field appearance="outline">
+    <mat-label>Vendor Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="relative left-4">
+    <mat-label>Cars</mat-label>
+    <mat-select>
+      <mat-option value="volvo">Volvo</mat-option>
+      <mat-option value="saab">Saab</mat-option>
+      <mat-option value="mercedes">Mercedes</mat-option>
+      <mat-option value="audi">Audi</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Address -->
+  <div formGroupName="address" class="grid grid-cols-2 gap-4">
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <input matInput formControlName="state" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipCode" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="country" />
+    </mat-form-field>
+  </div>
+
+  <!-- Contacts -->
+  <div formArrayName="contacts">
+    <div *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i" class="p-3 border rounded-md mb-2">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isAccountManager">Account Manager</mat-checkbox>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Department Type ID</mat-label>
+        <input matInput type="number" formControlName="departmentTypeId" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Department Name</mat-label>
+        <input matInput formControlName="departmentName" />
+      </mat-form-field>
+
+      <button mat-stroked-button color="warn" (click)="removeContact(i)" *ngIf="contacts.length > 1">
+        Remove Contact
+      </button>
+    </div>
+    <button mat-stroked-button color="primary" (click)="addContact()">+ Add Contact</button>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="save()" [disabled]="vendorForm.invalid">
+    Save
+  </button>
+</mat-dialog-actions>
